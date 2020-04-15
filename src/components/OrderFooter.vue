@@ -1,12 +1,12 @@
 <template>
   <div>
-    商品详情
+    订单头
   </div>
 </template>
 
 <script>
   export default {
-    
+    name:'order-footer'
   }
 </script>
 

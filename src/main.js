@@ -2,14 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-//根据前端跨域方式调整,如果是cors等等需要些https:xxxx
-//我们是接口代理方式    /a/b   ==> /api/a/b => /a/b
-
-
+import router from './router'
+import env from './env'
 axios.defaults.baseURL = '/api';
 axios.defaults.timeout = 8000;
-
-// 接口响应错误拦截
+axios.defaults.baseURL = env.baseURL;
 axios.interceptors.response.use(function (response) {
   let res = response.data;
   if (res.status == 0) {  //0代表成功
@@ -21,10 +18,13 @@ axios.interceptors.response.use(function (response) {
   }
 })
 
-Vue.use(VueAxios, axios);
 
+Vue.use(VueAxios, axios);
 Vue.config.productionTip = false
 
+
+
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')
